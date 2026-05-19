@@ -162,13 +162,17 @@
     .hero-image-col { display: flex; justify-content: center; order: -1; }
     .hero-image-wrap { width: min(72vw, 300px) !important; }
   }
-  /* Mobile: hide image, focus on copy */
+  /* Mobile: hide desktop image slot, show inline banner instead */
   @media (max-width: 639px) {
     .hero-image-col { display: none !important; }
     #top { padding-top: 5rem; }
     .hero-eyebrow { font-size: 9px !important; gap: 0.4rem !important; }
     .hero-stats { border-top: 1px solid rgba(2,132,199,0.12); padding-top: 1.25rem; }
     .hero-stat-item + .hero-stat-item { border-left: 1px solid rgba(2,132,199,0.12); padding-left: 1rem; }
+    .hero-mobile-banner { display: block !important; }
+  }
+  @media (min-width: 640px) {
+    .hero-mobile-banner { display: none !important; }
   }
 </style>
 
@@ -1783,6 +1787,16 @@ function mount() {
               Precision lenses, designer frames and clinical eye-care across the UAE —
               by trained optometrists.
             </p>
+
+            {/* Mobile-only hero image banner */}
+            <div className="hero-mobile-banner mt-5 rounded-2xl overflow-hidden shadow-md shadow-sky-100"
+                 style={{ display:'none', height:'200px' }}>
+              <img
+                src="assets/hero-eyewear.png"
+                alt="Al Jebal Eyewear Collection"
+                fetchpriority="high"
+                style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center 30%' }} />
+            </div>
 
             {/* CTAs */}
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
